@@ -1,4 +1,12 @@
 {
+"Day-monday":"Monday",
+"Day-tuesday":"Tuesday",
+"Day-wednesday":"Wednesday",
+"Day-thursday":"Thurdsday",
+"Day-friday":"Friday",
+"Day-saturday":"Saturday",
+"Day-sunday":"Sunday",
+"Description-not-provided":"Description not provided",
 "Login_form_title":"Perdidog - Log in",
 "login_form_username":"Email or username",
 "Login_form_password":"Password",
@@ -6,11 +14,12 @@
 "Login_form_login_success":"Successful log in",
 "Login_form_login_failure":"Failed to log in",
 "Login_form_login_validate_failure":"Please fill in the fields correctly",
-"Day-monday":"Monday",
-"Day-tuesday":"Tuesday",
-"Day-wednesday":"Wednesday",
-"Day-thursday":"Thurdsday",
-"Day-friday":"Friday",
-"Day-saturday":"Saturday",
-"Day-sunday":"Sunday"
+"new_lost_pet_title":"New Report",
+"new_lost_pet_name":"Pet name",
+"new_lost_pet_name_hint":"e.g Max, Rocky, Bear",
+"new_lost_pet_description":"Pet description",
+"new_lost_pet_distinct_feature":"",
+"new_lost_pet_distinct_feature_hint":"e.g White spots in its chest",
+"new_lost_pet_phone_number":"Phone number",
+"new_lost_pet_phone_number_hint":"If it has one"
 }
