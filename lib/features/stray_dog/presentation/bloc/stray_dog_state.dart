@@ -1,29 +1,37 @@
 part of 'stray_dog_bloc.dart';
 
 abstract class StrayDogState extends Equatable {
-  const StrayDogState({this.strayDogs, this.error});
-  final List<StrayDogModel>? strayDogs;
-  final DioException? error;
   @override
-  List<Object> get props => [
-        strayDogs ?? [],
-        error ?? DioException(requestOptions: RequestOptions())
-      ];
+  List<Object> get props => [];
 }
 
 final class StrayDogInitial extends StrayDogState {}
 
-final class GotAllStrayDogsInProgress extends StrayDogState {}
+final class GotAllLostPetsInProgress extends StrayDogState {}
 
-final class GotAllStrayDogsSuccess extends StrayDogState {
-  const GotAllStrayDogsSuccess(List<StrayDogModel> strayDogs)
-      : super(strayDogs: strayDogs);
+final class GotAllLostPetsSuccess extends StrayDogState {
+  final List<LostPet> lostPets;
+
+  GotAllLostPetsSuccess({
+    required this.lostPets,
+  });
+  @override
+  List<Object> get props => lostPets;
 }
 
-final class GotAllStrayDogsFailure extends StrayDogState {
-  const GotAllStrayDogsFailure(DioException error) : super(error: error);
+final class GotAllLostPetsFailure extends StrayDogState {
+  final String error;
+
+  GotAllLostPetsFailure({
+    required this.error,
+  });
+  @override
+  List<Object> get props => [error];
 }
 
-final class CreatedStrayDogState extends StrayDogState {}
+//States CreatedStrayDogReport
+final class CreatedStrayDogReportInProgress extends StrayDogState {}
+
+final class CreatedStrayDogReportSuccessful extends StrayDogState {}
 
 final class CreatedStrayDogReportFailure extends StrayDogState {}

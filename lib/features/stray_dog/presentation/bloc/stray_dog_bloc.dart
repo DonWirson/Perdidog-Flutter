@@ -1,40 +1,65 @@
 import 'package:bloc/bloc.dart';
-import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
 
-import '../../../../core/resources/data_state.dart';
-import '../../data/models/stray_dog_model.dart';
+import '../../domain/entities/lost_pet.dart';
+import '../../domain/usecases/create_lost_pet_report.dart';
 import '../../domain/usecases/get_stray_dogs.dart';
 
 part 'stray_dog_event.dart';
 part 'stray_dog_state.dart';
 
 class StrayDogBloc extends Bloc<StrayDogEvent, StrayDogState> {
-  final GetStrayDogsUseCase getStrayDogsUseCase;
+  final GetLostPetsUseCase getLostPetsUseCase;
+  final CreateLostPetReportUseCase createLostPetReportUseCase;
 
-  StrayDogBloc(this.getStrayDogsUseCase) : super(StrayDogInitial()) {
+  StrayDogBloc(
+    this.getLostPetsUseCase,
+    this.createLostPetReportUseCase,
+  ) : super(StrayDogInitial()) {
     on<StrayDogEvent>((event, emit) {});
-    on<GotAllStrayDogs>(_getAllStrayDogs);
+    on<GotAllLostPets>(_getAllStrayDogs);
+    on<ReportNewLostPet>(_createNewReport);
+  }
+
+  Future<void> _createNewReport(
+      ReportNewLostPet event, Emitter<StrayDogState> emit) async {
+    try {
+      emit(
+        CreatedStrayDogReportInProgress(),
+      );
+
+      final apiResponse = await createLostPetReportUseCase(params: event.dto);
+      if (apiResponse.success) {
+        emit(
+          CreatedStrayDogReportSuccessful(),
+        );
+      } else {
+        emit(
+          CreatedStrayDogReportFailure(),
+        );
+      }
+    } catch (e) {}
   }
 
   Future<void> _getAllStrayDogs(
-      GotAllStrayDogs event, Emitter<StrayDogState> emit) async {
+      GotAllLostPets event, Emitter<StrayDogState> emit) async {
     try {
-      final dataState = await getStrayDogsUseCase();
-      if (dataState is DataSuccess && dataState.data!.isNotEmpty) {
-        emit(
-          GotAllStrayDogsSuccess(dataState.data as List<StrayDogModel>),
-        );
-      }
-      if (dataState is DataFailed) {
-        emit(
-          GotAllStrayDogsFailure(dataState.error!),
-        );
-      }
-    } on DioException catch (e) {
       emit(
-        GotAllStrayDogsFailure(e),
+        GotAllLostPetsInProgress(),
       );
-    }
+
+      final apiResponse = await getLostPetsUseCase();
+      if (apiResponse.success) {
+        emit(
+          GotAllLostPetsSuccess(lostPets: apiResponse.data!),
+        );
+      } else {
+        emit(
+          GotAllLostPetsFailure(
+            error: apiResponse.statusMessage ?? "Error",
+          ),
+        );
+      }
+    } catch (e) {}
   }
 }

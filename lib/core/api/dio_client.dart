@@ -14,7 +14,10 @@ class DioClient implements ApiClient {
   DioClient() {
     final baseApiUrl = dotenv.env['BASE_API_URL'];
 
-    _client = Dio()..options.baseUrl = baseApiUrl ?? "";
+    _client = Dio(
+      
+    )..options.baseUrl = baseApiUrl ?? "";
+    
     // ..interceptors.add(
     //   InterceptorsWrapper(
     //     onRequest: (options, handler) {
@@ -57,12 +60,12 @@ class DioClient implements ApiClient {
   }
 
   @override
-  Future<ApiResponse<T>> request<T>({
+  Future<ApiResponse<T>> request<T, G>({
     required String path,
     required MethodType method,
     Map<String, dynamic>? payload,
     Map<String, dynamic>? queryParameters,
-    T Function(Map<String, dynamic> json)? fromJson,
+    T Function(G json)? fromJson,
   }) async {
     ApiResponse<T> apiResponse;
     Response response;
@@ -112,6 +115,7 @@ class DioClient implements ApiClient {
       );
     } on DioException catch (e) {
       apiResponse = ApiResponse(
+        data: null,
         statusCode: e.stackTrace.hashCode,
         statusMessage: e.message,
         success: false,
@@ -119,6 +123,7 @@ class DioClient implements ApiClient {
       log(e.toString());
     } catch (e) {
       apiResponse = ApiResponse(
+        data: null,
         statusMessage: e.toString(),
         success: false,
       );

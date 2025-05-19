@@ -1,9 +1,25 @@
 {
+"Day-monday":"Lunes",
+"Day-tuesday":"Martes",
+"Day-wednesday":"Miércoles",
+"Day-thursday":"Jueves",
+"Day-friday":"Viernes",
+"Day-saturday":"Sábado",
+"Day-sunday":"Domingo",
+"Description-not-provided":"Descripción no entregada",
 "Login_form_title":"Perdidog ' Inicio de sesion",
 "login_form_username":"Email o usuario",
 "Login_form_password":"Contraseña",
 "Login_form_validate":"Validar",
 "Login_form_login_success":"Inicio de sesión exitoso",
 "Login_form_login_failure":"Fallo al iniciar sesión",
-"Login_form_login_validate_failure":"Rellene los campos correctamente"
+"Login_form_login_validate_failure":"Rellene los campos correctamente",
+"new_lost_pet_title":"Nuevo reporte",
+"new_lost_pet_name":"Nombre mascota",
+"new_lost_pet_name_hint":"ej. Kim, Cachupin, Oso",
+"new_lost_pet_description":"Descripción mascota",
+"new_lost_pet_distinct_feature":"Facción destacable",
+"new_lost_pet_distinct_feature_hint":"ej. Manchas blancas en pecho",
+"new_lost_pet_phone_number":"Número Teléfonico",
+"new_lost_pet_phone_number_hint":"Si tiene uno"
 }

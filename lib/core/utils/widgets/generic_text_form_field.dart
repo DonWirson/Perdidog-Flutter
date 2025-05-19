@@ -10,7 +10,6 @@ class GenericTextFormField extends StatefulWidget {
   final String? hintText;
   final String? Function(String?)? validatorFunction;
   final bool isPasswordInput;
-  
 
   const GenericTextFormField({
     super.key,
@@ -26,39 +25,40 @@ class GenericTextFormField extends StatefulWidget {
 }
 
 class _GenericTextFormFieldState extends State<GenericTextFormField> {
-  bool obscurePassword = false;
+  // bool obscurePassword = false;
   @override
   Widget build(BuildContext context) {
-    bool isThisInputPassword = widget.isPasswordInput;
+    // bool isThisInputPassword = widget.isPasswordInput;
     return Row(
       children: [
         Expanded(
           child: TextFormField(
             controller: widget.textEditingController,
-            obscureText: obscurePassword,
-            enableSuggestions: !isThisInputPassword,
-            autocorrect: !isThisInputPassword,
+            // obscureText: obscurePassword,
+            // enableSuggestions: !isThisInputPassword,
+            // autocorrect: !isThisInputPassword,
             autovalidateMode: AutovalidateMode.onUserInteraction,
             validator: widget.validatorFunction,
             decoration: InputDecoration(
-              labelText: widget.labelText.tr(),
-              labelStyle: Theme.of(context).textTheme.labelText,
-              hintText: widget.hintText?.tr(),
-              hintStyle: Theme.of(context).textTheme.hintText,
-              suffixIcon: isThisInputPassword
-                  ? InkWell(
-                      child: Icon(
-                        Icons.remove_red_eye_outlined,
-                        color: obscurePassword ? Colors.black38 : null,
-                      ),
-                      onTap: () {
-                        setState(() {
-                          obscurePassword = !obscurePassword;
-                        });
-                      },
-                    )
-                  : null,
-            ),
+                labelText: widget.labelText.tr(),
+                labelStyle: Theme.of(context).textTheme.labelText,
+                hintText: widget.hintText?.tr(),
+                hintStyle: Theme.of(context).textTheme.hintText,
+                floatingLabelBehavior: FloatingLabelBehavior.always
+                // suffixIcon: isThisInputPassword
+                //     ? InkWell(
+                //         child: Icon(
+                //           Icons.remove_red_eye_outlined,
+                //           color: obscurePassword ? Colors.black38 : null,
+                //         ),
+                //         onTap: () {
+                //           // setState(() {
+                //           //   obscurePassword = !obscurePassword;
+                //           // });
+                //         },
+                //       )
+                //     : null,
+                ),
           ),
         ),
       ],

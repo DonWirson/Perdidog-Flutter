@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import '../../../../../core/gradients/gradients.dart';
 
 import '../../../../../config/routes/routes.dart';
+import '../../../../../core/gradients/gradients.dart';
 import '../../../../../core/utils/loading_progress_indicator.dart';
-import '../../../../../core/utils/widgets/generic_app_bar.dart';
-import '../../../../../core/utils/widgets/generic_scaffold.dart';
 import '../../../../authentication/presentation/bloc/authentication_bloc.dart';
 import '../../../../user_preferences/presentation/bloc/user_preferences_bloc.dart';
+import '../../bloc/stray_dog_bloc.dart';
 import '../stray_dog/landing_stray_dog_page.dart';
 import 'map_page.dart';
 import 'settings_page.dart';
@@ -41,10 +40,18 @@ class _LandingPageState extends State<LandingPage> {
   @override
   Widget build(BuildContext context) {
     var bloc = BlocProvider.of<UserPreferencesBloc>(context);
+
     return BlocConsumer<AuthenticationBloc, AuthenticationState>(
       listener: (context, state) {
         if (state is IsNotLoggedIn) {
           context.pushReplacementNamed("login");
+        }
+
+        if (state is IsLoggedIn) {
+          //Disparar eventos para buscar perritos o mascotas :D
+          BlocProvider.of<StrayDogBloc>(context).add(
+            GotAllLostPets(),
+          );
         }
       },
       builder: (context, state) {
@@ -58,23 +65,11 @@ class _LandingPageState extends State<LandingPage> {
             child: const LoadingProgressIndicator(),
           );
         }
-        return GenericScaffold(
-          showAppBar: true,
-          showBottomBar: true,
-          appBarWidget: widget.showAppBar
-              ? GenericAppBar(
-                  title: widget.title,
-                )
-              : null,
-          bodyWidget: IndexedStack(
-            index: bloc.currentIndex,
-            children: const [
-              LandingStrayDog(),
-              LandingMap(),
-              Landingsettings(),
-            ],
+        return Scaffold(
+          appBar: AppBar(
+            title: Text(widget.title ?? "Landing"),
           ),
-          bottomBarWidget: BottomNavigationBar(
+          bottomNavigationBar: BottomNavigationBar(
             items: Routes.bottomBarItems,
             currentIndex: bloc.currentIndex,
             selectedItemColor: const Color.fromARGB(158, 255, 145, 0),
@@ -86,8 +81,24 @@ class _LandingPageState extends State<LandingPage> {
               );
             },
           ),
+          body: IndexedStack(
+            index: bloc.currentIndex,
+            children: const [
+              LandingStrayDog(),
+              LandingMap(),
+              Landingsettings(),
+            ],
+          ),
+          floatingActionButton: ElevatedButton(
+            child: const Icon(Icons.add),
+            onPressed: () => navigateToNewLostPet(),
+          ),
         );
       },
     );
+  }
+
+  void navigateToNewLostPet() {
+    context.pushNamed("newLostPet");
   }
 }

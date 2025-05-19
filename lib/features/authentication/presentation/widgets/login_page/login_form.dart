@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../../../core/utils/widgets/generic_text_form_field.dart';
 import '../../../../../../core/validators/login_validators.dart';
 import '../../../../../core/extension/font_extension.dart';
 import '../../../../../core/utils/loading_progress_indicator.dart';
@@ -13,9 +12,9 @@ class LoginForm extends StatelessWidget {
   LoginForm({
     super.key,
   });
+  static final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController userController = TextEditingController();
   final TextEditingController passController = TextEditingController();
-  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -43,19 +42,35 @@ class LoginForm extends StatelessWidget {
                   "Perdidog_placeholder",
                   style: Theme.of(context).textTheme.title1,
                 ),
-                GenericTextFormField(
-                  labelText: "login_username",
-                  hintText: "login_username_hint",
-                  textEditingController: userController,
-                  validatorFunction: LoginValidators.emailValidator,
+                TextFormField(
+                  controller: userController,
+                  validator: LoginValidators.emailValidator,
+                  decoration: InputDecoration(
+                    labelText: "login_username".tr(),
+                    hintText: "login_username_hint".tr(),
+                  ),
                 ),
-                GenericTextFormField(
-                  labelText: "login_password",
-                  hintText: "login_password_hint",
-                  textEditingController: passController,
-                  isPasswordInput: true,
-                  validatorFunction: LoginValidators.passwordValidator,
+                TextFormField(
+                  controller: passController,
+                  validator: LoginValidators.passwordValidator,
+                  decoration: InputDecoration(
+                    labelText: "login_passwordaaaaaaaa".tr(),
+                    hintText: "login_password_hint".tr(),
+                  ),
                 ),
+                // GenericTextFormField(
+                //   labelText: "login_username",
+                //   hintText: "login_username_hint",
+                //   textEditingController: userController,
+                //   validatorFunction: LoginValidators.emailValidator,
+                // ),
+                // GenericTextFormField(
+                //   labelText: "login_password",
+                //   hintText: "login_password_hint",
+                //   textEditingController: passController,
+                //   isPasswordInput: true,
+                //   validatorFunction: LoginValidators.passwordValidator,
+                // ),
                 Padding(
                   padding: const EdgeInsets.only(top: 40),
                   child: ElevatedButton(

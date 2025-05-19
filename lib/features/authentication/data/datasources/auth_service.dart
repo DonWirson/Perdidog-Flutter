@@ -21,7 +21,7 @@ class AuthService {
       "roles": params.roles,
     };
 
-    final response = await apiClient.request<bool>(
+    final response = await apiClient.request<bool,void>(
       path: "$endpointUrl/Register",
       method: MethodType.post,
       payload: headers,
@@ -36,7 +36,7 @@ class AuthService {
       "password": params.password,
     };
 
-    final response = await apiClient.request<JwtToken>(
+    final response = await apiClient.request<JwtToken, Map<String, dynamic>>(
       path: "$endpointUrl/Login",
       method: MethodType.post,
       payload: headers,

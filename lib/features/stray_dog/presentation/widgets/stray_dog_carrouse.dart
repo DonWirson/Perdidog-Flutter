@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../data/models/stray_dog_model.dart';
+import '../../domain/entities/lost_pet_entities.dart';
 import '../bloc/stray_dog_bloc.dart';
 import 'custom_card.dart';
 
@@ -13,7 +13,7 @@ class StrayDogsCarrousel extends StatefulWidget {
 }
 
 class _StrayDogsCarrouselState extends State<StrayDogsCarrousel> {
-  List<StrayDogModel> strayDogsModel = [];
+  List<LostPet> strayDogsModel = [];
 
   @override
   void initState() {
@@ -28,14 +28,14 @@ class _StrayDogsCarrouselState extends State<StrayDogsCarrousel> {
   Widget build(BuildContext context) {
     return BlocListener<StrayDogBloc, StrayDogState>(
       listener: (context, state) {
-        if (state is GotAllStrayDogsSuccess) {
+        if (state is GotAllLostPetsSuccess) {
           setState(() {
-            strayDogsModel = state.strayDogs!;
+            strayDogsModel = state.lostPets;
           });
         }
-        if (state is GotAllStrayDogsFailure) {
-          //TODO:Implementar snackbar o accion al fallar request
-        }
+        // if (state is GotAllLostPetsFailure) {
+        //   //TODO:Implementar snackbar o accion al fallar request
+        // }
       },
       child: Padding(
         padding: const EdgeInsets.only(left: 12.0, right: 12.0),
@@ -72,7 +72,8 @@ class _StrayDogsCarrouselState extends State<StrayDogsCarrousel> {
                     ),
                   ),
                   child: CustomCard(
-                    strayDogModel: strayDogsModel[index],
+                    context: context,
+                    lostPet: strayDogsModel[index],
                   ),
                 );
               },

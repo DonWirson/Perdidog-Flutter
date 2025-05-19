@@ -1,10 +1,10 @@
 import 'package:dartz/dartz.dart';
-import '../../domain/entities/jwt_token.dart';
-import '../../domain/usecases/login_user.dart';
 
 import '../../../../core/data_state/data_state.dart';
 import '../../../../core/data_state/failure.dart';
+import '../../domain/entities/jwt_token.dart';
 import '../../domain/repositories/auth_repository.dart';
+import '../../domain/usecases/login_user.dart';
 import '../../domain/usecases/register_user.dart';
 import '../datasources/auth_service.dart';
 

@@ -1,13 +1,13 @@
 class ApiResponse<T> {
   T? data;
   int? statusCode;
-  bool? success;
+  bool success;
   String? statusMessage;
 
   ApiResponse({
-    this.data,
+    required this.data,
     this.statusCode,
-    this.success,
+    required this.success,
     this.statusMessage,
   });
 

@@ -56,7 +56,7 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<StrayDogBloc>(
           create: (context) => StrayDogBloc(
-            sl.get<GetStrayDogsUseCase>(),
+            sl.get<GetLostPetsUseCase>(),
           ),
         ),
         BlocProvider<UserPreferencesBloc>(

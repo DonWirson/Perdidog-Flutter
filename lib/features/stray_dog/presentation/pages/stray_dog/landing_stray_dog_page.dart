@@ -1,39 +1,88 @@
-import 'package:easy_localization/easy_localization.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../data/models/stray_dog_model.dart';
+import '../../../domain/entities/lost_pet_entities.dart';
 import '../../bloc/stray_dog_bloc.dart';
-import '../../widgets/stray_dog_carrouse.dart';
+import '../../widgets/custom_card.dart';
 
-class LandingStrayDog extends StatelessWidget {
-  const LandingStrayDog({super.key});
+class LandingStrayDog extends StatefulWidget {
+  const LandingStrayDog({
+    // required this.lostPets,
+    super.key,
+  });
+
+  @override
+  State<LandingStrayDog> createState() => _LandingStrayDogState();
+}
+
+class _LandingStrayDogState extends State<LandingStrayDog> {
+  List<LostPet> lostPets = [];
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          const StrayDogsCarrousel(),
-          const Text("TESTING"),
-          ElevatedButton(
-            child: const Text("Test crear reporte"),
-            onPressed: () {
-              BlocProvider.of<StrayDogBloc>(context).add(
-                const CreatedStrayDogReport(strayDogModel: StrayDogModel()),
-              );
-            },
-          ),
-          Padding(
-            padding: const EdgeInsets.all(30.0),
-            child: ElevatedButton(
-              child: const Text("landing_sign_out").tr(),
-              onPressed: () => FirebaseAuth.instance.signOut(),
+    return BlocConsumer<StrayDogBloc, StrayDogState>(
+      listener: (context, state) {
+        if (state is GotAllLostPetsSuccess) {
+          lostPets = state.lostPets +
+              state.lostPets +
+              state.lostPets +
+              state.lostPets +
+              state.lostPets +
+              state.lostPets;
+        }
+      },
+      builder: (context, state) {
+        return Column(
+          children: [
+            const Flexible(
+              child: Padding(
+                padding: EdgeInsets.all(
+                  15,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text(
+                      "Filtro",
+                    ),
+                    Icon(
+                      Icons.arrow_drop_down_circle,
+                    ),
+                  ],
+                ),
+              ),
             ),
-          ),
-        ],
-      ),
+            Expanded(
+              flex: 10,
+              child: GridView.builder(
+                gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                  maxCrossAxisExtent: 200,
+                ),
+                itemCount: lostPets.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return CustomCard(
+                    context: context,
+                    lostPet: lostPets[index],
+                  );
+                },
+              ),
+            ),
+          ],
+        );
+      },
     );
+  }
+
+  int getItemCountPerRow(BuildContext context) {
+    double minTileWidth = 200;
+    double availableWidth = MediaQuery.of(context).size.width;
+
+    int i = availableWidth ~/ minTileWidth;
+    return i;
   }
 }
