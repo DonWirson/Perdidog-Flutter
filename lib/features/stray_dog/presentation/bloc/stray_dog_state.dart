@@ -29,6 +29,9 @@ final class GotAllLostPetsFailure extends StrayDogState {
   List<Object> get props => [error];
 }
 
-// final class CreatedStrayDogState extends StrayDogState {}
+//States CreatedStrayDogReport
+final class CreatedStrayDogReportInProgress extends StrayDogState {}
 
-// final class CreatedStrayDogReportFailure extends StrayDogState {}
+final class CreatedStrayDogReportSuccessful extends StrayDogState {}
+
+final class CreatedStrayDogReportFailure extends StrayDogState {}

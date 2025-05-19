@@ -11,6 +11,7 @@ import 'features/authentication/domain/usecases/register_user.dart';
 import 'features/stray_dog/data/datasources/remote/stray_dog_api_service.dart';
 import 'features/stray_dog/data/repositories/stray_dog_repository_impl.dart';
 import 'features/stray_dog/domain/repositories/stray_dog_repository.dart';
+import 'features/stray_dog/domain/usecases/create_lost_pet_report.dart';
 import 'features/stray_dog/domain/usecases/get_stray_dogs.dart';
 
 final sl = GetIt.instance;
@@ -56,9 +57,14 @@ Future<void> initializeDependencies() async {
       authRepository: sl(),
     ),
   );
-
+  //LOSTPET
   sl.registerSingleton<GetLostPetsUseCase>(
     GetLostPetsUseCase(
+      sl(),
+    ),
+  );
+  sl.registerSingleton<CreateLostPetReportUseCase>(
+    CreateLostPetReportUseCase(
       sl(),
     ),
   );

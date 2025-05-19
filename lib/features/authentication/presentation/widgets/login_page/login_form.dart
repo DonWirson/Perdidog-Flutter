@@ -12,7 +12,7 @@ class LoginForm extends StatelessWidget {
   LoginForm({
     super.key,
   });
-  static GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
+  static final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController userController = TextEditingController();
   final TextEditingController passController = TextEditingController();
 

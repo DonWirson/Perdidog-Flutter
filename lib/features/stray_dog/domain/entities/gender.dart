@@ -7,4 +7,15 @@ class Gender {
     required this.id,
     required this.name,
   });
+
+  static List<Gender> get genderDummyData => [
+        Gender(
+          id: 1,
+          name: "Masculino",
+        ),
+        Gender(
+          id: 2,
+          name: "Femenino",
+        ),
+      ];
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../../../core/utils/time_utils.dart';
 import '../../domain/entities/lost_pet_entities.dart';
 import 'rounded_card_tile.dart';
@@ -38,10 +39,15 @@ class CustomCardDetails extends StatelessWidget {
             children: [
               Expanded(
                 flex: 4,
-                child: Image.asset(
-                  "assets/images/cute_dog.jpg",
-                  fit: BoxFit.scaleDown,
-                ),
+                child: lostPet.imageUrl == null
+                    ? Image.asset(
+                        "assets/images/cute_dog.jpg",
+                        fit: BoxFit.scaleDown,
+                      )
+                    : Image.network(
+                        lostPet.imageUrl!,
+                        fit: BoxFit.scaleDown,
+                      ),
               ),
               const Spacer(),
               Expanded(

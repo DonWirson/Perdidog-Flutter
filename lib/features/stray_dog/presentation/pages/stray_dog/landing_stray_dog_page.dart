@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../domain/entities/lost_pet_entities.dart';
-import '../../widgets/custom_card.dart';
 
+import '../../../domain/entities/lost_pet_entities.dart';
 import '../../bloc/stray_dog_bloc.dart';
+import '../../widgets/custom_card.dart';
 
 class LandingStrayDog extends StatefulWidget {
   const LandingStrayDog({
@@ -79,7 +79,7 @@ class _LandingStrayDogState extends State<LandingStrayDog> {
   }
 
   int getItemCountPerRow(BuildContext context) {
-    double minTileWidth = 200; //in your case
+    double minTileWidth = 200;
     double availableWidth = MediaQuery.of(context).size.width;
 
     int i = availableWidth ~/ minTileWidth;
