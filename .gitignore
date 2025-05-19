@@ -42,9 +42,11 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
-.fvm
 .vscode
 android/app/src/google-services.json
 android/app/google-services.json
 ios/Runner/GoogleService-Info.plist
 macos/Runner/GoogleService-Info.plist
+
+# FVM Version Cache
+.fvm/

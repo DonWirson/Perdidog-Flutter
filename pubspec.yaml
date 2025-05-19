@@ -34,6 +34,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   dartz: ^0.10.1
   dio: ^5.3.3
+  dropdown_button2: ^2.3.9
   easy_localization: ^3.0.2
   email_validator: ^2.1.17
   equatable: ^2.0.5
@@ -49,6 +50,7 @@ dependencies:
   google_fonts: 6.1.0
   google_sign_in: ^6.1.5
   http: ^1.1.0
+  image_picker: ^1.0.8
   ionicons: ^0.2.2
   json_annotation: ^4.9.0
   retrofit: ^4.0.3
@@ -76,6 +78,7 @@ flutter:
     - assets/localization/
     - assets/images/
     - assets/google_fonts/
+    - assets/ca/
     - .env
   #   - images/a_dot_ham.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see
