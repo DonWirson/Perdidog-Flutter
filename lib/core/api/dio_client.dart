@@ -14,7 +14,10 @@ class DioClient implements ApiClient {
   DioClient() {
     final baseApiUrl = dotenv.env['BASE_API_URL'];
 
-    _client = Dio()..options.baseUrl = baseApiUrl ?? "";
+    _client = Dio(
+      
+    )..options.baseUrl = baseApiUrl ?? "";
+    
     // ..interceptors.add(
     //   InterceptorsWrapper(
     //     onRequest: (options, handler) {

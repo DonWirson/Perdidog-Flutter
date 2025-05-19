@@ -5,14 +5,9 @@ import 'package:go_router/go_router.dart';
 import '../../features/authentication/presentation/pages/login_page.dart';
 import '../../features/authentication/presentation/pages/register_page.dart';
 import '../../features/stray_dog/presentation/pages/landing/landing_page.dart';
+import '../../features/stray_dog/presentation/pages/new_lost_pet/new_lost_pet.dart';
 
 enum Routes {
-  landing(
-    name: "landing",
-    path: "/",
-    icon: Icon(Icons.home),
-    screenWidget: LandingPage(),
-  ),
   login(
     name: "login",
     path: "/login",
@@ -25,11 +20,23 @@ enum Routes {
     icon: Icon(Icons.person_add_alt_1_rounded),
     screenWidget: RegisterPage(),
   ),
-  //Lost dog Grid
-  grid(
-    name: "grid",
-    path: "/grid",
-    icon: Icon(Icons.grid_view_sharp),
+  //NavigationRoute
+  landingLostPets(
+    name: "landing",
+    path: "/",
+    icon: Icon(Icons.pets),
+    screenWidget: LandingPage(),
+  ),
+  mapLostPets(
+    name: "mapRoute",
+    path: "/map",
+    icon: Icon(Icons.map),
+    screenWidget: RegisterPage(),
+  ),
+  userSettings(
+    name: "UserSettingsRoute",
+    path: "/user",
+    icon: Icon(Icons.person),
     screenWidget: RegisterPage(),
   ),
   map(
@@ -38,11 +45,11 @@ enum Routes {
     icon: Icon(Icons.map),
     screenWidget: RegisterPage(),
   ),
-  settings(
-    name: "settings",
-    path: "/settings",
-    icon: Icon(Icons.map),
-    screenWidget: RegisterPage(),
+  newLostPet(
+    name: "newLostPet",
+    path: "/newLostPet",
+    icon: Icon(Icons.add),
+    screenWidget: NewLostPet(),
   );
 
   static GoRouter get getroutes {
@@ -62,16 +69,16 @@ enum Routes {
   static List<BottomNavigationBarItem> get bottomBarItems {
     return [
       BottomNavigationBarItem(
-        label: Routes.landing.name.tr(),
-        icon: Routes.landing.icon,
+        label: Routes.landingLostPets.name.tr(),
+        icon: Routes.landingLostPets.icon,
       ),
       BottomNavigationBarItem(
-        label: Routes.grid.name.tr(),
-        icon: Routes.grid.icon,
+        label: Routes.mapLostPets.name.tr(),
+        icon: Routes.mapLostPets.icon,
       ),
       BottomNavigationBarItem(
-        label: Routes.settings.name.tr(),
-        icon: Routes.settings.icon,
+        label: Routes.userSettings.name.tr(),
+        icon: Routes.userSettings.icon,
       ),
     ];
   }

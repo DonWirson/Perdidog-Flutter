@@ -40,24 +40,25 @@ class _GenericTextFormFieldState extends State<GenericTextFormField> {
             autovalidateMode: AutovalidateMode.onUserInteraction,
             validator: widget.validatorFunction,
             decoration: InputDecoration(
-              labelText: widget.labelText.tr(),
-              labelStyle: Theme.of(context).textTheme.labelText,
-              hintText: widget.hintText?.tr(),
-              hintStyle: Theme.of(context).textTheme.hintText,
-              // suffixIcon: isThisInputPassword
-              //     ? InkWell(
-              //         child: Icon(
-              //           Icons.remove_red_eye_outlined,
-              //           color: obscurePassword ? Colors.black38 : null,
-              //         ),
-              //         onTap: () {
-              //           // setState(() {
-              //           //   obscurePassword = !obscurePassword;
-              //           // });
-              //         },
-              //       )
-              //     : null,
-            ),
+                labelText: widget.labelText.tr(),
+                labelStyle: Theme.of(context).textTheme.labelText,
+                hintText: widget.hintText?.tr(),
+                hintStyle: Theme.of(context).textTheme.hintText,
+                floatingLabelBehavior: FloatingLabelBehavior.always
+                // suffixIcon: isThisInputPassword
+                //     ? InkWell(
+                //         child: Icon(
+                //           Icons.remove_red_eye_outlined,
+                //           color: obscurePassword ? Colors.black38 : null,
+                //         ),
+                //         onTap: () {
+                //           // setState(() {
+                //           //   obscurePassword = !obscurePassword;
+                //           // });
+                //         },
+                //       )
+                //     : null,
+                ),
           ),
         ),
       ],
