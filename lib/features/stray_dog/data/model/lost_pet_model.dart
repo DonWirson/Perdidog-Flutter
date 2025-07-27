@@ -1,8 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first, overridden_fields
 
 import 'package:json_annotation/json_annotation.dart';
-import 'package:perros_sos/features/stray_dog/data/model/stray_dog_models.dart';
-import 'package:perros_sos/features/stray_dog/domain/entities/lost_pet_entities.dart';
+import 'package:perdidog/features/stray_dog/data/model/stray_dog_models.dart';
+import 'package:perdidog/features/stray_dog/domain/entities/lost_pet_entities.dart';
 
 part 'lost_pet_model.g.dart';
 
@@ -26,10 +26,7 @@ class LostPetModel extends LostPet {
     required super.genderId,
     required this.animalType,
     required this.gender,
-  }) : super(
-          animalType: animalType,
-          gender: gender,
-        );
+  }) : super(animalType: animalType, gender: gender);
 
   factory LostPetModel.fromJson(Map<String, dynamic> json) =>
       _$LostPetModelFromJson(json);

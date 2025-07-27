@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+
 import '../extension/string_extension.dart';
 
 class TimeUtils {

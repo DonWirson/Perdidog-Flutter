@@ -17,15 +17,6 @@ class DioClient implements ApiClient {
     _client = Dio(
       
     )..options.baseUrl = baseApiUrl ?? "";
-    
-    // ..interceptors.add(
-    //   InterceptorsWrapper(
-    //     onRequest: (options, handler) {
-    //       // options.queryParameters['api_key'] = 'your-api-key';
-    //       return handler.next(options);
-    //     },
-    //   ),
-    // );
   }
 
   @override

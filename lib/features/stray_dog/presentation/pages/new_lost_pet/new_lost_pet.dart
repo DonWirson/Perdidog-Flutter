@@ -6,13 +6,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:perros_sos/features/stray_dog/domain/usecases/create_lost_pet_report.dart';
-import 'package:perros_sos/features/stray_dog/presentation/bloc/stray_dog_bloc.dart';
+
+import '../../../../../core/utils/widgets/generic_text_form_field.dart';
 import '../../../../../core/validators/new_pet_validators.dart';
 import '../../../domain/entities/animal_type.dart';
 import '../../../domain/entities/gender.dart';
-
-import '../../../../../core/utils/widgets/generic_text_form_field.dart';
+import '../../../domain/usecases/create_lost_pet_report.dart';
+import '../../bloc/stray_dog_bloc.dart';
 
 class NewLostPet extends StatefulWidget {
   const NewLostPet({super.key});
@@ -42,14 +42,10 @@ class _NewLostPetState extends State<NewLostPet> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          "new_lost_pet_title".tr(),
-        ),
+        title: Text("new_lost_pet_title".tr()),
         leading: InkWell(
           onTap: () => context.pop(),
-          child: const Icon(
-            Icons.arrow_back_rounded,
-          ),
+          child: const Icon(Icons.arrow_back_rounded),
         ),
       ),
       body: Form(
@@ -99,9 +95,7 @@ class _NewLostPetState extends State<NewLostPet> {
                           value: item.id,
                           child: Text(
                             item.name,
-                            style: const TextStyle(
-                              fontSize: 14,
-                            ),
+                            style: const TextStyle(fontSize: 14),
                           ),
                         ),
                       )
@@ -117,14 +111,10 @@ class _NewLostPetState extends State<NewLostPet> {
                     height: 40,
                     width: 140,
                   ),
-                  menuItemStyleData: const MenuItemStyleData(
-                    height: 40,
-                  ),
+                  menuItemStyleData: const MenuItemStyleData(height: 40),
                 ),
               ),
-              const Divider(
-                color: Colors.black38,
-              ),
+              const Divider(color: Colors.black38),
               DropdownButtonHideUnderline(
                 child: DropdownButton2<int>(
                   isExpanded: true,
@@ -141,9 +131,7 @@ class _NewLostPetState extends State<NewLostPet> {
                           value: item.id,
                           child: Text(
                             item.name,
-                            style: const TextStyle(
-                              fontSize: 14,
-                            ),
+                            style: const TextStyle(fontSize: 14),
                           ),
                         ),
                       )
@@ -158,23 +146,15 @@ class _NewLostPetState extends State<NewLostPet> {
                     height: 40,
                     width: 140,
                   ),
-                  menuItemStyleData: const MenuItemStyleData(
-                    height: 40,
-                  ),
+                  menuItemStyleData: const MenuItemStyleData(height: 40),
                 ),
               ),
-              const SizedBox(
-                height: 20,
-              ),
+              const SizedBox(height: 20),
               OutlinedButton(
-                child: const Text(
-                  "Tomar foto a mascota",
-                ),
+                child: const Text("Tomar foto a mascota"),
                 onPressed: () => showPhotoDialog(),
               ),
-              const SizedBox(
-                height: 20,
-              ),
+              const SizedBox(height: 20),
               selectedImage != null
                   ? Image.file(
                       selectedImage!,
@@ -185,16 +165,10 @@ class _NewLostPetState extends State<NewLostPet> {
               const Spacer(),
               ElevatedButton(
                 style: const ButtonStyle(
-                  backgroundColor: MaterialStatePropertyAll(
-                    Colors.greenAccent,
-                  ),
-                  foregroundColor: MaterialStatePropertyAll(
-                    Colors.black,
-                  ),
+                  backgroundColor: WidgetStatePropertyAll(Colors.greenAccent),
+                  foregroundColor: WidgetStatePropertyAll(Colors.black),
                 ),
-                child: const Text(
-                  "Continuar",
-                ),
+                child: const Text("Continuar"),
                 onPressed: () => createNewReport(),
               ),
             ],
